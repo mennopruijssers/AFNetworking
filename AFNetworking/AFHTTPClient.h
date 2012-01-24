@@ -149,6 +149,11 @@ extern NSString * AFQueryStringFromParametersWithEncoding(NSDictionary *paramete
 @property (nonatomic, assign) AFHTTPClientParameterEncoding parameterEncoding;
 
 /**
+ Enable to compress the post body using zlib inflate. Defaults to false
+ */
+@property (nonatomic, assign) BOOL shouldCompressRequestBody;
+
+/**
  The operation queue which manages operations enqueued by the HTTP client.
  */
 @property (readonly, nonatomic, retain) NSOperationQueue *operationQueue;
