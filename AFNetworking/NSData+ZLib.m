@@ -54,17 +54,14 @@
 		if (status == Z_STREAM_END) {
 			break;
 		} else if (status != Z_OK) {
+            deflateEnd(&zStream);
 			return nil;
 		}
 	}
     
 	// Set real length
 	[outputData setLength: zStream.total_out-bytesProcessedAlready];
-	
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-	NSString *fileName = [documentsDirectory stringByAppendingPathComponent:@"tmp.json"];
-    [outputData writeToFile:fileName atomically:YES];
+    deflateEnd(&zStream);
     
 	return outputData;
 
